@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pool Tickets // Autonomous Web3 Grand Prize Protocol</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+        :root {
+            --bg: #030407;
+            --card: #0a0d14;
+            --cyan: #00f3ff;
+            --green: #00ff66;
+            --gold: #ffcc00;
+            --text: #e2e8f0;
+            --muted: #64748b;
+            --border-cyan: rgba(0, 243, 255, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px;
+            background-image: 
+                linear-gradient(rgba(3, 4, 7, 0.92), rgba(3, 4, 7, 0.92)),
+                radial-gradient(circle at 50% 10%, rgba(0, 243, 255, 0.15) 0%, transparent 60%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin: auto 0;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 26px;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+            letter-spacing: 2px;
+        }
+
+        .logo span { color: var(--cyan); }
+
+        .tagline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(255, 204, 0, 0.08);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            padding: 6px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .hero-card {
+            background: var(--card);
+            border: 1.5px solid var(--border-cyan);
+            border-radius: 16px;
+            padding: 28px 20px;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .hero-desc {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.5;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .hero-desc b {
+            color: var(--cyan);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--cyan) 0%, #0088ff 100%);
+            color: #030407;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 13px;
+            text-transform: uppercase;
+            padding: 15px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .cta-btn:active {
+            transform: scale(0.98);
+        }
+
+        .social-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .social-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            background: rgba(10, 13, 20, 0.9);
+            border: 1px solid var(--border-cyan);
+            color: var(--cyan);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .social-btn:hover {
+            background: rgba(0, 243, 255, 0.15);
+            color: #fff;
+        }
+
+        .footer {
+            font-size: 9px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div>
+            <div class="logo">POOL<span>_TICKETS</span></div>
+            <div style="margin-top: 6px;">
+                <span class="tagline">⚡ Decentralized Grand Prize Protocol</span>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <div class="hero-title">100% Autonomous & Trustless</div>
+            <div class="hero-desc">
+                Welcome to <b>Pool Tickets</b>. The next-generation automated Web3 & Telegram jackpot platform. No human administrators, instant payment verification via Smart Contracts & Telegram Stars, and zero-KYC multi-chain architecture.
+            </div>
+            <div>
+                <a href="https://t.me/PoolTickets_bot" target="_blank" class="cta-btn">🚀 Open Mini App in Telegram</a>
+            </div>
+        </div>
+
+        <div class="social-section">
+            <div class="social-title">Official Networks & Community</div>
+            <div class="social-grid">
+                <a href="https://x.com/Pool_tickets" target="_blank" class="social-btn">X (Twitter)</a>
+                <a href="https://www.facebook.com/?locale=fr_FR" target="_blank" class="social-btn">Facebook</a>
+                <a href="https://www.instagram.com/pool_tickets/" target="_blank" class="social-btn">Instagram</a>
+                <a href="https://www.youtube.com/channel/UCPknRIuJevCnh6rdigFMuEA" target="_blank" class="social-btn">YouTube</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 Pool Tickets • Official Verification Landing Page
+    </div>
+
+</body>
+</html>
