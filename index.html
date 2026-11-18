@@ -4,18 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pool Tickets // Autonomous Web3 Grand Prize Protocol</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
 
+        /* =========================================================
+           THEME CLAIR (LIGHT MODE - PAR DEFAUT SI TELEGRAM CLAIR)
+           ========================================================= */
         :root {
-            --bg: #030407;
-            --card: #0a0d14;
-            --cyan: #00f3ff;
-            --green: #00ff66;
-            --gold: #ffcc00;
-            --text: #e2e8f0;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --card-secondary: #f8fafc;
+            --tg-blue: #0088cc;
+            --tg-blue-hover: #0077b5;
+            --tg-blue-soft: rgba(0, 136, 204, 0.1);
+            --green: #16a34a;
+            --green-soft: rgba(22, 163, 74, 0.12);
+            --red: #dc2626;
+            --gold: #d97706;
+            --text: #0f172a;
+            --text-secondary: #475569;
             --muted: #64748b;
-            --border-cyan: rgba(0, 243, 255, 0.3);
+            --border: #e2e8f0;
+            --border-strong: #cbd5e1;
+            --input-bg: #f1f5f9;
+            --shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            --banner-bg: #f8fafc;
+        }
+
+        /* =========================================================
+           THEME SOMBRE (DARK MODE - STYLE MAQUETTE TELEGRAM)
+           ========================================================= */
+        body.dark-theme {
+            --bg: #0c131d;
+            --card: #131d2b;
+            --card-secondary: #182436;
+            --tg-blue: #1a8cd8;
+            --tg-blue-hover: #249be8;
+            --tg-blue-soft: rgba(26, 140, 216, 0.15);
+            --green: #22c55e;
+            --green-soft: rgba(34, 197, 94, 0.15);
+            --red: #ef4444;
+            --gold: #f59e0b;
+            --text: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.14);
+            --input-bg: #1e293b;
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+            --banner-bg: #131d2b;
         }
 
         * {
@@ -34,10 +72,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 24px;
-            background-image: 
-                linear-gradient(rgba(3, 4, 7, 0.92), rgba(3, 4, 7, 0.92)),
-                radial-gradient(circle at 50% 10%, rgba(0, 243, 255, 0.15) 0%, transparent 60%);
-            background-attachment: fixed;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
 
         .container {
@@ -46,7 +81,7 @@
             text-align: center;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 20px;
             margin: auto 0;
         }
 
@@ -54,12 +89,12 @@
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
             font-size: 26px;
-            color: #fff;
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+            color: var(--text);
+            text-shadow: 0 0 15px var(--tg-blue-soft);
             letter-spacing: 2px;
         }
 
-        .logo span { color: var(--cyan); }
+        .logo span { color: var(--tg-blue); }
 
         .tagline {
             font-family: 'JetBrains Mono', monospace;
@@ -67,8 +102,8 @@
             color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 1px;
-            background: rgba(255, 204, 0, 0.08);
-            border: 1px solid rgba(255, 204, 0, 0.3);
+            background: rgba(217, 119, 6, 0.1);
+            border: 1px solid rgba(217, 119, 6, 0.3);
             padding: 6px 12px;
             border-radius: 6px;
             display: inline-block;
@@ -77,10 +112,10 @@
 
         .hero-card {
             background: var(--card);
-            border: 1.5px solid var(--border-cyan);
+            border: 1.5px solid var(--border-strong);
             border-radius: 16px;
-            padding: 28px 20px;
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
+            padding: 24px 20px;
+            box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -88,26 +123,70 @@
 
         .hero-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 18px;
-            color: #fff;
+            font-size: 17px;
+            color: var(--text);
             font-weight: 800;
         }
 
         .hero-desc {
-            font-size: 13px;
-            color: var(--muted);
+            font-size: 12.5px;
+            color: var(--text-secondary);
             line-height: 1.5;
             font-family: 'JetBrains Mono', monospace;
         }
 
         .hero-desc b {
-            color: var(--cyan);
+            color: var(--tg-blue);
+        }
+
+        /* Ecosystem Showcase Grid */
+        .eco-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 4px 0;
+        }
+
+        .eco-item {
+            background: var(--card-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .eco-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+            background: var(--tg-blue-soft);
+        }
+
+        .eco-info .eco-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .eco-info .eco-desc {
+            font-size: 9.5px;
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .cta-btn {
             display: inline-block;
-            background: linear-gradient(135deg, var(--cyan) 0%, #0088ff 100%);
-            color: #030407;
+            background: var(--tg-blue);
+            color: #ffffff;
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
             font-size: 13px;
@@ -115,8 +194,12 @@
             padding: 15px 24px;
             border-radius: 12px;
             text-decoration: none;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
-            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.25);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .cta-btn:hover {
+            background: var(--tg-blue-hover);
         }
 
         .cta-btn:active {
@@ -127,7 +210,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .social-title {
@@ -146,9 +229,9 @@
         }
 
         .social-btn {
-            background: rgba(10, 13, 20, 0.9);
-            border: 1px solid var(--border-cyan);
-            color: var(--cyan);
+            background: var(--card);
+            border: 1px solid var(--border-strong);
+            color: var(--text-secondary);
             padding: 8px 16px;
             border-radius: 8px;
             font-size: 10px;
@@ -156,12 +239,13 @@
             text-decoration: none;
             font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
-            transition: background 0.2s, color 0.2s;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
         }
 
         .social-btn:hover {
-            background: rgba(0, 243, 255, 0.15);
-            color: #fff;
+            background: var(--tg-blue-soft);
+            color: var(--tg-blue);
+            border-color: var(--tg-blue);
         }
 
         .footer {
@@ -170,7 +254,7 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-family: 'Orbitron', sans-serif;
-            margin-top: 20px;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -187,8 +271,41 @@
         <div class="hero-card">
             <div class="hero-title">100% Autonomous & Trustless</div>
             <div class="hero-desc">
-                Welcome to <b>Pool Tickets</b>. The next-generation automated Web3 & Telegram jackpot platform. No human administrators, instant payment verification via Smart Contracts & Telegram Stars, and zero-KYC multi-chain architecture.
+                Welcome to <b>Pool Tickets</b>. The next-generation automated Web3 & Telegram jackpot platform. No human administrators, instant payment verification, and zero-KYC multi-chain architecture.
             </div>
+
+            <!-- Visuel intégré de l'écosystème harmonisé avec le thème -->
+            <div class="eco-grid">
+                <div class="eco-item">
+                    <div class="eco-icon">💎</div>
+                    <div class="eco-info">
+                        <div class="eco-name">TON Crypto</div>
+                        <div class="eco-desc">Layer-1 Speed</div>
+                    </div>
+                </div>
+                <div class="eco-item">
+                    <div class="eco-icon">💵</div>
+                    <div class="eco-info">
+                        <div class="eco-name">USDT (TON)</div>
+                        <div class="eco-desc">Stable Value</div>
+                    </div>
+                </div>
+                <div class="eco-item">
+                    <div class="eco-icon">⭐</div>
+                    <div class="eco-info">
+                        <div class="eco-name">Telegram Stars</div>
+                        <div class="eco-desc">Instant Top-ups</div>
+                    </div>
+                </div>
+                <div class="eco-item">
+                    <div class="eco-icon">🛡️</div>
+                    <div class="eco-info">
+                        <div class="eco-name">TG Wallet</div>
+                        <div class="eco-desc">Secure Custody</div>
+                    </div>
+                </div>
+            </div>
+
             <div>
                 <a href="https://t.me/PoolTickets_bot" target="_blank" class="cta-btn">🚀 Open Mini App in Telegram</a>
             </div>
@@ -209,5 +326,33 @@
         © 2026 Pool Tickets • Official Verification Landing Page
     </div>
 
+    <script>
+        // Script de synchronisation automatique du thème (Clair / Sombre Telegram ou Système)
+        function applyTelegramTheme() {
+            const tg = window.Telegram && window.Telegram.WebApp;
+            const isDark = tg && tg.colorScheme
+                ? tg.colorScheme === 'dark'
+                : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (isDark) {
+                document.body.classList.add('dark-theme');
+                if (tg && tg.setHeaderColor) tg.setHeaderColor('#0c131d');
+                if (tg && tg.setBackgroundColor) tg.setBackgroundColor('#0c131d');
+            } else {
+                document.body.classList.remove('dark-theme');
+                if (tg && tg.setHeaderColor) tg.setHeaderColor('#f1f5f9');
+                if (tg && tg.setBackgroundColor) tg.setBackgroundColor('#f1f5f9');
+            }
+        }
+
+        applyTelegramTheme();
+
+        if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.ready();
+            window.Telegram.WebApp.onEvent('themeChanged', applyTelegramTheme);
+        }
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTelegramTheme);
+    </script>
 </body>
 </html>
