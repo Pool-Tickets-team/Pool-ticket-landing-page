@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pool Tickets // Autonomous Web3 Grand Prize Protocol</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pool Tickets — Autonomous Web3 & Telegram Protocol</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap');
 
         /* =========================================================
-           THEME CLAIR (LIGHT MODE - PAR DEFAUT SI TELEGRAM CLAIR)
+           THEME CLAIR (LIGHT MODE)
            ========================================================= */
         :root {
             --bg: #f1f5f9;
@@ -20,20 +20,19 @@
             --tg-blue-soft: rgba(0, 136, 204, 0.1);
             --green: #16a34a;
             --green-soft: rgba(22, 163, 74, 0.12);
-            --red: #dc2626;
             --gold: #d97706;
+            --gold-soft: rgba(217, 119, 6, 0.12);
             --text: #0f172a;
             --text-secondary: #475569;
             --muted: #64748b;
             --border: #e2e8f0;
             --border-strong: #cbd5e1;
-            --input-bg: #f1f5f9;
-            --shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-            --banner-bg: #f8fafc;
+            --shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+            --illustration-bg: #f8fafc;
         }
 
         /* =========================================================
-           THEME SOMBRE (DARK MODE - STYLE MAQUETTE TELEGRAM)
+           THEME SOMBRE (DARK MODE - SYNCHRONISE TELEGRAM)
            ========================================================= */
         body.dark-theme {
             --bg: #0c131d;
@@ -44,26 +43,26 @@
             --tg-blue-soft: rgba(26, 140, 216, 0.15);
             --green: #22c55e;
             --green-soft: rgba(34, 197, 94, 0.15);
-            --red: #ef4444;
             --gold: #f59e0b;
+            --gold-soft: rgba(245, 158, 11, 0.15);
             --text: #f8fafc;
             --text-secondary: #cbd5e1;
             --muted: #94a3b8;
             --border: rgba(255, 255, 255, 0.08);
             --border-strong: rgba(255, 255, 255, 0.14);
-            --input-bg: #1e293b;
-            --shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
-            --banner-bg: #131d2b;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --illustration-bg: #182436;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             min-height: 100vh;
@@ -71,13 +70,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 24px;
+            padding: 24px 16px;
             transition: background-color 0.25s ease, color 0.25s ease;
         }
 
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 540px;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -85,117 +84,136 @@
             margin: auto 0;
         }
 
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 26px;
-            color: var(--text);
-            text-shadow: 0 0 15px var(--tg-blue-soft);
-            letter-spacing: 2px;
+        .brand-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
         }
 
-        .logo span { color: var(--tg-blue); }
+        .logo {
+            font-weight: 800;
+            font-size: 26px;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--tg-blue);
+        }
 
         .tagline {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: var(--gold);
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--tg-blue);
+            background: var(--tg-blue-soft);
+            border: 1px solid var(--border-strong);
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            background: rgba(217, 119, 6, 0.1);
-            border: 1px solid rgba(217, 119, 6, 0.3);
-            padding: 6px 12px;
-            border-radius: 6px;
-            display: inline-block;
-            margin: 0 auto;
         }
 
         .hero-card {
             background: var(--card);
-            border: 1.5px solid var(--border-strong);
-            border-radius: 16px;
-            padding: 24px 20px;
+            border: 1px solid var(--border-strong);
+            border-radius: 18px;
+            padding: 26px 20px;
             box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 18px;
         }
 
         .hero-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 17px;
+            font-size: 20px;
             color: var(--text);
             font-weight: 800;
+            letter-spacing: -0.3px;
         }
 
         .hero-desc {
-            font-size: 12.5px;
+            font-size: 13.5px;
             color: var(--text-secondary);
-            line-height: 1.5;
-            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.55;
         }
 
         .hero-desc b {
-            color: var(--tg-blue);
+            color: var(--text);
+            font-weight: 600;
         }
 
-        /* Ecosystem Showcase Grid */
-        .eco-grid {
+        /* =========================================================
+           ILLUSTRATION VISUELLE ECOSYSTEME (WALLET + TON + USDT + STARS)
+           ========================================================= */
+        .ecosystem-visual {
+            background: var(--illustration-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .visual-caption {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ecosystem-svg {
+            width: 100%;
+            max-width: 440px;
+            height: auto;
+            display: block;
+        }
+
+        /* Cartes caractéristiques */
+        .features-row {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 4px 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            text-align: center;
         }
 
-        .eco-item {
+        .feature-pill {
             background: var(--card-secondary);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 10px 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-align: left;
+            border-radius: 10px;
+            padding: 10px 6px;
         }
 
-        .eco-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            flex-shrink: 0;
-            background: var(--tg-blue-soft);
-        }
-
-        .eco-info .eco-name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 11px;
+        .feature-pill .f-title {
+            font-size: 12px;
             font-weight: 700;
             color: var(--text);
+            margin-bottom: 2px;
         }
 
-        .eco-info .eco-desc {
-            font-size: 9.5px;
+        .feature-pill .f-sub {
+            font-size: 10.5px;
             color: var(--muted);
-            font-family: 'JetBrains Mono', monospace;
         }
 
         .cta-btn {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
             background: var(--tg-blue);
             color: #ffffff;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 13px;
-            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 14px;
             padding: 15px 24px;
             border-radius: 12px;
             text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.25);
-            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 14px rgba(0, 136, 204, 0.25);
+            transition: background-color 0.2s ease, transform 0.15s ease;
         }
 
         .cta-btn:hover {
@@ -203,28 +221,28 @@
         }
 
         .cta-btn:active {
-            transform: scale(0.98);
+            transform: scale(0.985);
         }
 
+        /* Réseaux sociaux */
         .social-section {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: 5px;
         }
 
         .social-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 10px;
+            font-size: 11px;
+            font-weight: 600;
             color: var(--muted);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.6px;
         }
 
         .social-grid {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
@@ -232,14 +250,13 @@
             background: var(--card);
             border: 1px solid var(--border-strong);
             color: var(--text-secondary);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 10px;
-            font-weight: 800;
+            padding: 9px 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
             text-decoration: none;
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            transition: background 0.2s, color 0.2s, border-color 0.2s;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow);
         }
 
         .social-btn:hover {
@@ -249,70 +266,94 @@
         }
 
         .footer {
-            font-size: 9px;
+            font-size: 11px;
             color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-family: 'Orbitron', sans-serif;
-            margin-top: 15px;
+            margin-top: 20px;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div>
-            <div class="logo">POOL<span>_TICKETS</span></div>
-            <div style="margin-top: 6px;">
-                <span class="tagline">⚡ Decentralized Grand Prize Protocol</span>
-            </div>
+        <div class="brand-header">
+            <div class="logo">POOL <span>TICKETS</span></div>
+            <span class="tagline">⚡ Autonomous Web3 & Telegram Protocol</span>
         </div>
 
         <div class="hero-card">
             <div class="hero-title">100% Autonomous & Trustless</div>
             <div class="hero-desc">
-                Welcome to <b>Pool Tickets</b>. The next-generation automated Web3 & Telegram jackpot platform. No human administrators, instant payment verification, and zero-KYC multi-chain architecture.
+                Welcome to <b>Pool Tickets</b>. The automated grand prize protocol built natively for Telegram. Zero human intervention, instant verification, and direct payouts to your personal wallet.
             </div>
 
-            <!-- Visuel intégré de l'écosystème harmonisé avec le thème -->
-            <div class="eco-grid">
-                <div class="eco-item">
-                    <div class="eco-icon">💎</div>
-                    <div class="eco-info">
-                        <div class="eco-name">TON Crypto</div>
-                        <div class="eco-desc">Layer-1 Speed</div>
-                    </div>
+            <!-- IMAGE / ILLUSTRATION VECTORIELLE HARMONISÉE : TELEGRAM WALLET + TON + USDT + STARS -->
+            <div class="ecosystem-visual">
+                <div class="visual-caption">Supported Payment & Payout Ecosystem</div>
+                
+                <svg class="ecosystem-svg" viewBox="0 0 460 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Lignes de connexion centrales -->
+                    <path d="M135 77 H185" stroke="var(--border-strong)" stroke-width="2" stroke-dasharray="4 4"/>
+                    <path d="M275 77 H325" stroke="var(--border-strong)" stroke-width="2" stroke-dasharray="4 4"/>
+
+                    <!-- CARTE GAUCHE : TON & USDT (TON) -->
+                    <rect x="8" y="22" width="127" height="110" rx="14" fill="var(--card)" stroke="var(--border-strong)" stroke-width="1.5"/>
+                    <!-- Badge TON -->
+                    <circle cx="50" cy="60" r="18" fill="#0098EA"/>
+                    <path d="M50 49L40 65.5H48.5V72L60 55.5H51.5V49H50Z" fill="white"/>
+                    <!-- Badge USDT -->
+                    <circle cx="92" cy="60" r="18" fill="#26A17B"/>
+                    <text x="92" y="65" text-anchor="middle" fill="white" font-family="Inter, sans-serif" font-weight="800" font-size="14">₮</text>
+                    <text x="71" y="98" text-anchor="middle" fill="var(--text)" font-family="Inter, sans-serif" font-weight="700" font-size="11.5">TON & USDT</text>
+                    <text x="71" y="114" text-anchor="middle" fill="var(--muted)" font-family="Inter, sans-serif" font-weight="500" font-size="9.5">TON Network</text>
+
+                    <!-- CARTE CENTRALE : TELEGRAM WALLET -->
+                    <rect x="172" y="12" width="116" height="130" rx="16" fill="var(--card)" stroke="var(--tg-blue)" stroke-width="2"/>
+                    <circle cx="230" cy="56" r="24" fill="var(--tg-blue)"/>
+                    <!-- Icône Portefeuille / Avion Telegram -->
+                    <path d="M238.5 47.5L218.5 55.2C217.1 55.8 217.1 56.6 218.2 56.9L223.3 58.5L235.2 51C235.8 50.6 236.3 50.8 235.9 51.2L226.2 59.9L225.8 65.2C226.3 65.2 226.6 65 226.9 64.7L229.4 62.3L234.5 66.1C235.4 66.6 236.1 66.3 236.3 65.2L239.6 49.5C239.9 48.2 239.1 47.2 238.5 47.5Z" fill="white"/>
+                    <text x="230" y="99" text-anchor="middle" fill="var(--text)" font-family="Inter, sans-serif" font-weight="800" font-size="12">TG Wallet</text>
+                    <rect x="193" y="109" width="74" height="18" rx="9" fill="var(--tg-blue-soft)"/>
+                    <text x="230" y="121" text-anchor="middle" fill="var(--tg-blue)" font-family="Inter, sans-serif" font-weight="700" font-size="9">CONNECTED</text>
+
+                    <!-- CARTE DROITE : TELEGRAM STARS -->
+                    <rect x="325" y="22" width="127" height="110" rx="14" fill="var(--card)" stroke="var(--border-strong)" stroke-width="1.5"/>
+                    <circle cx="388" cy="60" r="19" fill="var(--gold-soft)"/>
+                    <!-- Étoile Dorée Telegram -->
+                    <path d="M388 46L391.8 54.2L400.8 55.3L394.1 61.5L395.9 70.4L388 66L380.1 70.4L381.9 61.5L375.2 55.3L384.2 54.2L388 46Z" fill="#F59E0B"/>
+                    <text x="388" y="98" text-anchor="middle" fill="var(--text)" font-family="Inter, sans-serif" font-weight="700" font-size="11.5">Telegram Stars</text>
+                    <text x="388" y="114" text-anchor="middle" fill="var(--muted)" font-family="Inter, sans-serif" font-weight="500" font-size="9.5">In-App Instant</text>
+                </svg>
+            </div>
+
+            <!-- Points clés -->
+            <div class="features-row">
+                <div class="feature-pill">
+                    <div class="f-title">Zero Admin</div>
+                    <div class="f-sub">Auto-Payouts</div>
                 </div>
-                <div class="eco-item">
-                    <div class="eco-icon">💵</div>
-                    <div class="eco-info">
-                        <div class="eco-name">USDT (TON)</div>
-                        <div class="eco-desc">Stable Value</div>
-                    </div>
+                <div class="feature-pill">
+                    <div class="f-title">Instant Entry</div>
+                    <div class="f-sub">Stars & TON</div>
                 </div>
-                <div class="eco-item">
-                    <div class="eco-icon">⭐</div>
-                    <div class="eco-info">
-                        <div class="eco-name">Telegram Stars</div>
-                        <div class="eco-desc">Instant Top-ups</div>
-                    </div>
-                </div>
-                <div class="eco-item">
-                    <div class="eco-icon">🛡️</div>
-                    <div class="eco-info">
-                        <div class="eco-name">TG Wallet</div>
-                        <div class="eco-desc">Secure Custody</div>
-                    </div>
+                <div class="feature-pill">
+                    <div class="f-title">Verified</div>
+                    <div class="f-sub">On-Chain</div>
                 </div>
             </div>
 
             <div>
-                <a href="https://t.me/PoolTickets_bot" target="_blank" class="cta-btn">🚀 Open Mini App in Telegram</a>
+                <a href="https://t.me/PoolTickets_bot" target="_blank" class="cta-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.119.098.152.228.163.33.016.116.033.379.017.584z"/>
+                    </svg>
+                    Open Mini App in Telegram
+                </a>
             </div>
         </div>
 
         <div class="social-section">
-            <div class="social-title">Official Networks & Community</div>
+            <div class="social-title">Official Channels & Community</div>
             <div class="social-grid">
                 <a href="https://x.com/Pool_tickets" target="_blank" class="social-btn">X (Twitter)</a>
                 <a href="https://www.facebook.com/profile.php?id=61596702147202&locale=fr_FR" target="_blank" class="social-btn">Facebook</a>
@@ -323,11 +364,10 @@
     </div>
 
     <div class="footer">
-        © 2026 Pool Tickets • Official Verification Landing Page
+        © 2026 Pool Tickets • Official Verification Portal
     </div>
 
     <script>
-        // Script de synchronisation automatique du thème (Clair / Sombre Telegram ou Système)
         function applyTelegramTheme() {
             const tg = window.Telegram && window.Telegram.WebApp;
             const isDark = tg && tg.colorScheme
